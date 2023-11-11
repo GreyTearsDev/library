@@ -120,7 +120,7 @@ form {
 
 input {
   margin-bottom: 10px;
-  height: 25px;
+  height: 35px;
   padding: 5px;
   border: 1px solid var(--header-color);
   border-radius: 5px;
@@ -130,9 +130,6 @@ input:focus {
   background-color: #9fd0d1ce;
   outline: none;
   border: 1px solid var(--text-color);
-}
-
-input[type="checkbox"] {
 }
 
 input.long {
@@ -150,7 +147,7 @@ form button {
   color: var(--text-color);
   border: 1px solid var(--text-color);
   border-radius: 10px;
-  margin-left: 5px;
+  margin-right: 5px;
 }
 
 form button:hover {
@@ -207,4 +204,9 @@ form button:hover {
   background-color: var(--accent-2);
   color: var(--text-color);
   cursor: pointer;
+}
+
+.read-btn {
+  width: 50%;
+  height: 25px;
 }

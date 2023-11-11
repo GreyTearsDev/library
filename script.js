@@ -36,9 +36,9 @@ function createHTMLBooks(book) {
   deleteBtn.textContent = "x";
 
   if (book.toggleRead() == true) {
-    readStatus.textContent = "Have read it";
-  } else {
     readStatus.textContent = "Haven't read it";
+  } else {
+    readStatus.textContent = "Have read it";
   }
 
   //add them to the container
@@ -62,10 +62,10 @@ function displayBooks(book) {
       //ad listener to toggle the text on the button
       readStatus.addEventListener("click", function () {
         if (storedBook.toggleRead() == true) {
-          readStatus.textContent = "Have read it";
+          readStatus.textContent = "Haven't read it";
           return;
         }
-        readStatus.textContent = "Haven't read it";
+        readStatus.textContent = "Have read it";
       });
 
       bookContainer.appendChild(newBook);
@@ -79,11 +79,6 @@ function removeBook(bookElement) {
   let author = bookElement.querySelector(".book-author").textContent;
   let year = bookElement.querySelector(".book-year").textContent;
   let pages = bookElement.querySelector(".book-pages").textContent;
-
-  console.log(title);
-  console.log(author);
-  console.log(year);
-  console.log(pages);
 
   for (let i = 0; i < myLibrary.length; i++) {
     let book = myLibrary[i];
@@ -137,10 +132,14 @@ bookAdd.addEventListener("click", (event) => {
   let haveRead = document.querySelector("#have-read").value;
   let allInputs = document.querySelectorAll("input");
 
+  //check if all inputs are filled
+  for (let input of allInputs) {
+    if (input.value == "") return;
+  }
+
   let book = new Book(title, author, pubYear, numOfPages, haveRead);
   myLibrary.push(book);
   displayBooks(book);
-  console.log(myLibrary);
 
   //clears the input fields before closing the modal
   allInputs.forEach((input) => (input.value = ""));
@@ -154,3 +153,24 @@ bookContainer.addEventListener("click", (event) => {
     removeBook(event.target.parentElement);
   }
 });
+
+function defaultBooks() {
+  let book1 = new Book("Da Impostah", "GreyTearsDev", 2023, 300, true);
+  let book2 = new Book("It", "Stephen King", 2003, 1138, false);
+  let book3 = new Book(
+    "The Strain",
+    "Guillermo Del Toro and Chuck Hogan",
+    2009,
+    401,
+    true
+  );
+
+  myLibrary.push(book1);
+  myLibrary.push(book2);
+  myLibrary.push(book3);
+
+  displayBooks(book1);
+  displayBooks(book2);
+  displayBooks(book3);
+}
+defaultBooks();
