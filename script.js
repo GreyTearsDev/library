@@ -5,16 +5,55 @@ const bookModal = document.querySelector("[data-modal]");
 const bookOpenModal = document.querySelector("[data-open-modal]");
 const bookCloseModal = document.querySelector("[data-close-modal]");
 const bookAdd = document.querySelector("#submit");
-const bookContainer = document.querySelector("main");
 
-function Book(title, author, numOfPages, haveRead) {
+function createHTMLBooks(book) {
+  //create the new alements
+  const newBook = document.createElement("div");
+  const title = document.createElement("p");
+  const author = document.createElement("p");
+  const year = document.createElement("p");
+  const pages = document.createElement("p");
+
+  //set the classes
+  newBook.classList.add("book");
+  title.classList.add("book-title");
+  author.classList.add("book-author");
+  year.classList.add("book-year");
+  pages.classList.add("book-pages");
+
+  //add content
+  title.textContent = book.title;
+  author.textContent = book.author;
+  year.textContent = book.year;
+  pages.textContent = `${book.numOfPages} pages`;
+
+  //add them to the container
+  newBook.appendChild(title);
+  newBook.appendChild(author);
+  newBook.appendChild(year);
+  newBook.appendChild(pages);
+
+  return newBook;
+
+  //add it the the main container
+  bookContainer.appendChild(newBook);
+}
+
+function displayBooks(library) {
+  const bookContainer = document.querySelector("main");
+
+  // Iterates over the books in the library
+  for (let book of library) {
+    bookContainer.appendChild(createHTMLBooks(book));
+  }
+}
+
+function Book(title, author, year, numOfPages, haveRead) {
   this.title = title;
   this.author = author;
+  this.year = year;
   this.numOfPages = numOfPages;
   this.haveRead = haveRead;
-  this.info = function () {
-    return `${this.title} by ${this.author}, ${this.numOfPages} pages, ${this.haveRead}`;
-  };
 }
 
 function addBookToLibrary(title, author, year, numOfPages, haveRead) {
@@ -43,6 +82,15 @@ bookAdd.addEventListener("click", (event) => {
 
   //clears the input fields before closing the modal
   allInputs.forEach((input) => (input.value = ""));
-
+  displayBooks(myLibrary);
   bookModal.close();
 });
+
+addBookToLibrary(
+  "A song of ice and fire",
+  "George R. R. Martin",
+  1997,
+  320,
+  true
+);
+displayBooks(myLibrary);
