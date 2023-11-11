@@ -1,6 +1,6 @@
 "use strict";
 
-const myLibrary = [];
+let myLibrary = [];
 const bookModal = document.querySelector("[data-modal]");
 const bookOpenModal = document.querySelector("[data-open-modal]");
 const bookCloseModal = document.querySelector("[data-close-modal]");
@@ -13,6 +13,7 @@ function createHTMLBooks(book) {
   const author = document.createElement("p");
   const year = document.createElement("p");
   const pages = document.createElement("p");
+  const deleteBtn = document.createElement("button");
 
   //set the classes
   newBook.classList.add("book");
@@ -20,18 +21,21 @@ function createHTMLBooks(book) {
   author.classList.add("book-author");
   year.classList.add("book-year");
   pages.classList.add("book-pages");
+  deleteBtn.classList.add("book-delete-btn");
 
   //add content
   title.textContent = book.title;
   author.textContent = book.author;
   year.textContent = book.year;
   pages.textContent = `${book.numOfPages} pages`;
+  deleteBtn.textContent = "x";
 
   //add them to the container
   newBook.appendChild(title);
   newBook.appendChild(author);
   newBook.appendChild(year);
   newBook.appendChild(pages);
+  newBook.appendChild(deleteBtn);
 
   //add it the the main container
   return newBook;
@@ -44,6 +48,26 @@ function displayBooks(library) {
   for (let book of library) {
     bookContainer.appendChild(createHTMLBooks(book));
   }
+}
+
+function removeBook(bookElement) {
+  let title = bookElement.firstChild;
+  let author = titleElement.nextElementSibling;
+  let year = authorElement.nextElementSibling;
+  let pages = yearElement.nextElementSibling;
+
+  for (let book of myLibrary) {
+    if (
+      title.textContent == book.title &&
+      author.textContent == book.author &&
+      year.textContent == book.year &&
+      pages.textContent == book.numOfPages
+    ) {
+      myLibrary.pop(book);
+      break;
+    }
+  }
+  displayBooks(myLibrary);
 }
 
 function Book(title, author, year, numOfPages, haveRead) {
@@ -90,3 +114,6 @@ addBookToLibrary(
   320,
   "on"
 );
+
+displayBooks(myLibrary);
+removeBook();

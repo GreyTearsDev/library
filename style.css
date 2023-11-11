@@ -170,17 +170,44 @@ form button:hover {
   align-items: center;
   gap: 10px;
   text-align: center;
+  position: relative;
 }
 
-.book .book-title {
+.book-title {
   font-weight: bold;
   font-size: 1.2rem;
+  cursor: default;
 }
 
-.book .book-author {
+.book-author {
   font-style: italic;
+  cursor: default;
 }
 
-.book .book-have-read {
+.book-year {
+  font-size: 0.8rem;
+}
+
+.book-have-read {
   color: var(--accent-2);
+  cursor: default;
+}
+
+.book-delete-btn {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  width: 8%;
+  height: 8%;
+  appearance: none;
+  background-color: var(--header-color);
+  color: var(--text-color);
+  border-radius: 50%;
+  border: none;
+}
+
+.book-delete-btn:hover {
+  background-color: var(--accent-2);
+  color: var(--text-color);
+  cursor: pointer;
 }
