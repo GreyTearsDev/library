@@ -10,7 +10,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
-    <script src="./script.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -28,6 +27,12 @@
       </div>
     </header>
     <div class="add-book">
+      <button data-open-modal>
+        <p>Add Book</p>
+        <p>+</p>
+      </button>
+    </div>
+    <main>
       <dialog data-modal>
         <form action="#">
           <div>
@@ -79,15 +84,9 @@
             <input type="checkbox" name="have-read" id="have-read" />
           </div>
           <button type="submit">Add book</button>
-          <button>Cancel</button>
+          <button data-close-modal>Cancel</button>
         </form>
       </dialog>
-      <button id="add-book-btn">
-        <p>Add Book</p>
-        <p>+</p>
-      </button>
-    </div>
-    <main>
       <div class="book">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est
         consectetur, delectus facere commodi impedit eius praesentium accusamus
@@ -132,7 +131,14 @@
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est
         consectetur, delectus facere commodi impedit eius praesentium accusamus
         saepe provident tenetur.
+      </div>
+
+      <div class="book">
+        <p>Title</p>
+        <p>Author</p>
       </div>
     </main>
+
+    <script src="./script.js"></script>
   </body>
 </html>

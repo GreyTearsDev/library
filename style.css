@@ -14,6 +14,8 @@
   --accent-2: #159a9c;
 }
 
+/*======================== GENERAL START=================*/
+
 body {
   display: grid;
   grid-template-columns: 1fr 10%;
@@ -23,6 +25,10 @@ body {
     "main main";
   height: 100vh;
 }
+
+/*======================== GENERAL END =================*/
+
+/*======================== HEADER START =================*/
 
 header {
   background-color: var(--header-color);
@@ -76,6 +82,9 @@ header > p {
   color: var(--accent-2);
   cursor: pointer;
 }
+/*======================== HEADER END =================*/
+
+/*======================== MAIN START =================*/
 
 main {
   background-color: var(--main-color);
@@ -94,3 +103,4 @@ main .book {
   border-left: 20px solid var(--accent-2);
   box-shadow: 5px 5px 5px #767b7d75;
 }
+/*======================== MAIN END =================*/

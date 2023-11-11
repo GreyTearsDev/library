@@ -1,5 +1,9 @@
+"use strict";
+
 const myLibrary = [];
-const addBookBtn = document.getElementById("add-book-btn");
+const bookModal = document.querySelector("[data-modal]");
+const bookOpenModal = document.querySelector("[data-open-modal]");
+const bookCloseModal = document.querySelector("[data-close-modal]");
 
 function Book(title, author, numOfPages, haveRead) {
   this.title = title;
@@ -14,3 +18,12 @@ function Book(title, author, numOfPages, haveRead) {
 function addBookToLibrary(title, author, year, numOfPages, haveRead) {
   myLibrary.push(new Book(title, author, year, numOfPages, haveRead));
 }
+
+bookOpenModal.addEventListener("click", () => {
+  bookModal.showModal();
+});
+
+bookCloseModal.addEventListener("click", (event) => {
+  event.preventDefault();
+  bookModal.close();
+});
