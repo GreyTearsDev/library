@@ -88,4 +88,8 @@ main {
 
 main .book {
   background-color: var(--text-color);
+  padding: 15px;
+  border-radius: 3px 25px 25px 3px;
+  border-left: 20px solid var(--accent-2);
+  box-shadow: 5px 5px 5px #767b7d75;
 }
