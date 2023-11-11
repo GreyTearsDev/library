@@ -5,6 +5,7 @@ const bookModal = document.querySelector("[data-modal]");
 const bookOpenModal = document.querySelector("[data-open-modal]");
 const bookCloseModal = document.querySelector("[data-close-modal]");
 const bookAdd = document.querySelector("#submit");
+const bookContainer = document.querySelector("main");
 let bookRemove = document.querySelectorAll(".book-delete-btn");
 let readTogglers = document.querySelectorAll(".read-btn");
 
@@ -31,7 +32,7 @@ function createHTMLBooks(book) {
   title.textContent = book.title;
   author.textContent = book.author;
   year.textContent = book.year;
-  pages.textContent = `${book.numOfPages} pages`;
+  pages.textContent = book.numOfPages;
   deleteBtn.textContent = "x";
 
   if (book.toggleRead() == true) {
@@ -52,20 +53,19 @@ function createHTMLBooks(book) {
 }
 
 function displayBooks(book) {
-  const bookContainer = document.querySelector("main");
   bookContainer.innerHTML = ""; // clears the container to avoid adding the same books twice
 
   for (let storedBook of myLibrary) {
-    if (myLibrary.length == 1 || !(book === storedBook)) {
+    if (myLibrary.length > 0 || !(book === storedBook)) {
       let newBook = createHTMLBooks(storedBook);
       let readStatus = newBook.lastElementChild;
       //ad listener to toggle the text on the button
       readStatus.addEventListener("click", function () {
         if (storedBook.toggleRead() == true) {
           readStatus.textContent = "Have read it";
-        } else {
-          readStatus.textContent = "Haven't read it";
+          return;
         }
+        readStatus.textContent = "Haven't read it";
       });
 
       bookContainer.appendChild(newBook);
@@ -75,24 +75,30 @@ function displayBooks(book) {
 }
 
 function removeBook(bookElement) {
-  let title = bookElement.querySelector(".book-title");
-  let author = bookElement.querySelector(".book-author");
-  let year = bookElement.querySelector(".book-year");
-  let pages = bookElement.querySelector(".book-pages");
+  let title = bookElement.querySelector(".book-title").textContent;
+  let author = bookElement.querySelector(".book-author").textContent;
+  let year = bookElement.querySelector(".book-year").textContent;
+  let pages = bookElement.querySelector(".book-pages").textContent;
+
+  console.log(title);
+  console.log(author);
+  console.log(year);
+  console.log(pages);
 
   for (let i = 0; i < myLibrary.length; i++) {
     let book = myLibrary[i];
     if (
-      title.textContent == book.title &&
-      author.textContent == book.author &&
-      year.textContent == book.year &&
-      pages.textContent == book.numOfPages
+      title == book.title &&
+      author == book.author &&
+      year == book.year &&
+      pages == book.numOfPages
     ) {
+      bookElement.remove();
       myLibrary.splice(i, 1);
+      console.log(myLibrary);
       break;
     }
   }
-  displayBooks(myLibrary);
 }
 
 function Book(title, author, year, numOfPages, haveRead) {
@@ -123,7 +129,7 @@ bookCloseModal.addEventListener("click", (event) => {
 });
 
 bookAdd.addEventListener("click", (event) => {
-  // event.preventDefault();
+  event.preventDefault();
   let title = document.querySelector("#title").value;
   let author = document.querySelector("#author").value;
   let pubYear = document.querySelector("#pub-year").value;
@@ -141,10 +147,10 @@ bookAdd.addEventListener("click", (event) => {
   bookModal.close();
 });
 
-bookRemove.forEach((button) => {
-  button.addEventListener("click", (event) => {
+bookContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("book-delete-btn")) {
     console.log("hi");
     event.preventDefault();
-    removeBook(button.parentElement);
-  });
+    removeBook(event.target.parentElement);
+  }
 });
