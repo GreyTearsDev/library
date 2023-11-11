@@ -12,6 +12,7 @@
   --main-color: #b4bec9;
   --accent-1: #deefe7;
   --accent-2: #159a9c;
+  font-family: "DM Sans", sans-serif;
 }
 
 /*======================== GENERAL START=================*/
@@ -38,7 +39,6 @@ header {
   align-items: center;
   justify-content: center;
   font-size: 2em;
-  font-family: "DM Sans", sans-serif;
   gap: 0.4vw;
 }
 
@@ -160,4 +160,23 @@ form button:hover {
   background-color: var(--text-color);
   color: var(--header-color);
   cursor: pointer;
+}
+
+/*============BOOK STYLE==========*/
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.book .book-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.book .book-author {
+  font-style: italic;
 }
