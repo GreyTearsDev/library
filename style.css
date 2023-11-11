@@ -42,9 +42,6 @@ header {
   gap: 0.4vw;
 }
 
-header > p {
-}
-
 .logo {
   grid-area: logo;
   background-color: var(--header-color);
@@ -197,8 +194,8 @@ form button:hover {
   position: absolute;
   top: 4%;
   left: 4%;
-  width: 8%;
-  height: 8%;
+  width: 25px;
+  height: 25px;
   appearance: none;
   background-color: var(--header-color);
   color: var(--text-color);
