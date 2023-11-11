@@ -163,15 +163,16 @@ form button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   text-align: center;
   position: relative;
 }
 
 .book-title {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: default;
+  margin-bottom: 25px;
 }
 
 .book-author {
@@ -216,4 +217,5 @@ form button:hover {
   border-radius: 10px;
   border: none;
   appearance: none;
+  margin-top: 25px;
 }

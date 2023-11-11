@@ -32,7 +32,7 @@ function createHTMLBooks(book) {
   title.textContent = book.title;
   author.textContent = book.author;
   year.textContent = book.year;
-  pages.textContent = book.numOfPages;
+  pages.textContent = `${book.numOfPages} pages`;
   deleteBtn.textContent = "x";
 
   if (book.toggleRead() == true) {
@@ -78,7 +78,7 @@ function removeBook(bookElement) {
   let title = bookElement.querySelector(".book-title").textContent;
   let author = bookElement.querySelector(".book-author").textContent;
   let year = bookElement.querySelector(".book-year").textContent;
-  let pages = bookElement.querySelector(".book-pages").textContent;
+  let pages = bookElement.querySelector(".book-pages").textContent.split(" ");
 
   for (let i = 0; i < myLibrary.length; i++) {
     let book = myLibrary[i];
@@ -86,7 +86,7 @@ function removeBook(bookElement) {
       title == book.title &&
       author == book.author &&
       year == book.year &&
-      pages == book.numOfPages
+      pages[0] == book.numOfPages
     ) {
       bookElement.remove();
       myLibrary.splice(i, 1);
