@@ -28,7 +28,61 @@
       </div>
     </header>
     <div class="add-book">
-      <button>
+      <dialog data-modal>
+        <form action="#">
+          <div>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Title"
+              minlength="1"
+              maxlength="40"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Author"
+              minlength="1"
+              maxlength="20"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="number"
+              id="pub-year"
+              name="pub-year"
+              placeholder="Publishing year"
+              min="1000"
+              max="2023"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="number"
+              id="num-of-pages"
+              name="num-of-pages"
+              placeholder="Number of pages"
+              min="1"
+              max="50000"
+              required
+            />
+          </div>
+          <div>
+            <label for="have-read"></label>
+            <input type="checkbox" name="have-read" id="have-read" />
+          </div>
+          <button type="submit">Add book</button>
+          <button>Cancel</button>
+        </form>
+      </dialog>
+      <button id="add-book-btn">
         <p>Add Book</p>
         <p>+</p>
       </button>

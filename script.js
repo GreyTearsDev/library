@@ -1,4 +1,5 @@
 const myLibrary = [];
+const addBookBtn = document.getElementById("add-book-btn");
 
 function Book(title, author, numOfPages, haveRead) {
   this.title = title;

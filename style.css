@@ -74,6 +74,7 @@ header > p {
 .add-book > button:hover {
   background-color: var(--text-color);
   color: var(--accent-2);
+  cursor: pointer;
 }
 
 main {
