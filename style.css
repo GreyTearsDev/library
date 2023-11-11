@@ -16,16 +16,29 @@
 
 body {
   display: grid;
+  grid-template-columns: 1fr 10%;
   grid-template-rows: 10% 1fr;
+  grid-template-areas:
+    "header book"
+    "main main";
   height: 100vh;
 }
 
 header {
-  border: 1px solid red;
-  display: grid;
-  grid-template-columns: 1fr 10%;
+  background-color: var(--header-color);
+  grid-area: header;
 }
 
 main {
-  border: 1px solid black;
+  background-color: var(--main-color);
+  grid-area: main;
+}
+
+.add-book {
+  grid-area: book;
+}
+
+.add-book > button {
+  width: 100%;
+  height: 100%;
 }
