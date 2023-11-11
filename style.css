@@ -52,13 +52,12 @@ header > p {
   top: 4px;
 }
 
-main {
-  background-color: var(--main-color);
-  grid-area: main;
-}
-
 .add-book {
   grid-area: book;
+}
+
+.add-book > button > p {
+  margin-bottom: -2px;
 }
 
 .add-book > button {
@@ -67,4 +66,26 @@ main {
   width: 100%;
   height: 100%;
   border: none;
+  padding: 5px;
+  font-size: large;
+  font-weight: 800;
+}
+
+.add-book > button:hover {
+  background-color: var(--text-color);
+  color: var(--accent-2);
+}
+
+main {
+  background-color: var(--main-color);
+  grid-area: main;
+  display: grid;
+  padding: 5vh 5vw;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 300px;
+  gap: 3vw;
+}
+
+main .book {
+  background-color: var(--text-color);
 }
