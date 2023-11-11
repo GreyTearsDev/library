@@ -13,3 +13,19 @@
   --accent-1: #deefe7;
   --accent-2: #159a9c;
 }
+
+body {
+  display: grid;
+  grid-template-rows: 10% 1fr;
+  height: 100vh;
+}
+
+header {
+  border: 1px solid red;
+  display: grid;
+  grid-template-columns: 1fr 10%;
+}
+
+main {
+  border: 1px solid black;
+}
