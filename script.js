@@ -6,7 +6,15 @@ const bookOpenModal = document.querySelector("[data-open-modal]");
 const bookCloseModal = document.querySelector("[data-close-modal]");
 const bookAdd = document.querySelector("#submit");
 
-function createHTMLBooks(book) {
+function createHTMLBooks(
+  formTitle,
+  formAuthor,
+  formYear,
+  formPages,
+  formHaveRead
+) {
+  const bookContainer = document.querySelector("main");
+
   //create the new alements
   const newBook = document.createElement("div");
   const title = document.createElement("p");
@@ -22,10 +30,10 @@ function createHTMLBooks(book) {
   pages.classList.add("book-pages");
 
   //add content
-  title.textContent = book.title;
-  author.textContent = book.author;
-  year.textContent = book.year;
-  pages.textContent = `${book.numOfPages} pages`;
+  title.textContent = formTitle;
+  author.textContent = formAuthor;
+  year.textContent = formYear;
+  pages.textContent = `${formPages} pages`;
 
   //add them to the container
   newBook.appendChild(title);
@@ -33,19 +41,11 @@ function createHTMLBooks(book) {
   newBook.appendChild(year);
   newBook.appendChild(pages);
 
-  return newBook;
+  addBookToLibrary(formTitle, formAuthor, formYear, formPages, formHaveRead);
 
   //add it the the main container
   bookContainer.appendChild(newBook);
-}
-
-function displayBooks(library) {
-  const bookContainer = document.querySelector("main");
-
-  // Iterates over the books in the library
-  for (let book of library) {
-    bookContainer.appendChild(createHTMLBooks(book));
-  }
+  return newBook;
 }
 
 function Book(title, author, year, numOfPages, haveRead) {
@@ -78,11 +78,9 @@ bookAdd.addEventListener("click", (event) => {
   let haveRead = document.querySelector("#have-read").value;
   let allInputs = document.querySelectorAll("input");
 
-  addBookToLibrary(title, author, pubYear, numOfPages, haveRead);
-
+  createHTMLBooks(title, author, pubYear, numOfPages, haveRead);
   //clears the input fields before closing the modal
   allInputs.forEach((input) => (input.value = ""));
-  displayBooks(myLibrary);
   bookModal.close();
 });
 
@@ -93,4 +91,3 @@ addBookToLibrary(
   320,
   true
 );
-displayBooks(myLibrary);
