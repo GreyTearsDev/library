@@ -44,6 +44,7 @@
               minlength="1"
               maxlength="40"
               required
+              class="long"
             />
           </div>
           <div>
@@ -55,6 +56,7 @@
               minlength="1"
               maxlength="20"
               required
+              class="long"
             />
           </div>
           <div>
@@ -63,9 +65,10 @@
               id="pub-year"
               name="pub-year"
               placeholder="Publishing year"
-              min="1000"
-              max="2023"
+              min="2"
+              max="4"
               required
+              class="short"
             />
           </div>
           <div>
@@ -77,11 +80,12 @@
               min="1"
               max="50000"
               required
+              class="short"
             />
           </div>
           <div>
-            <label for="have-read"></label>
             <input type="checkbox" name="have-read" id="have-read" />
+            <label for="have-read">Have read it</label>
           </div>
           <button type="submit">Add book</button>
           <button data-close-modal>Cancel</button>
