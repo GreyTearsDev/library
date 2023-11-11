@@ -51,25 +51,26 @@ function createHTMLBooks(book) {
   return newBook;
 }
 
-function displayBooks(library) {
+function displayBooks(book) {
   const bookContainer = document.querySelector("main");
   bookContainer.innerHTML = ""; // clears the container to avoid adding the same books twice
 
-  for (let book of library) {
-    let newBook = createHTMLBooks(book);
-    let readStatus = newBook.lastElementChild;
+  for (let storedBook of myLibrary) {
+    if (myLibrary.length == 1 || !(book === storedBook)) {
+      let newBook = createHTMLBooks(storedBook);
+      let readStatus = newBook.lastElementChild;
+      //ad listener to toggle the text on the button
+      readStatus.addEventListener("click", function () {
+        if (storedBook.toggleRead() == true) {
+          readStatus.textContent = "Have read it";
+        } else {
+          readStatus.textContent = "Haven't read it";
+        }
+      });
 
-    newBook.addEventListener("click", function () {
-      if (book.toggleRead() == true) {
-        console.log("hoho");
-        readStatus.textContent = "Have read it";
-      } else {
-        readStatus.textContent = "Haven't read it";
-      }
-    });
-    console.log(newBook.lastElementChild);
-
-    bookContainer.appendChild(newBook);
+      bookContainer.appendChild(newBook);
+    }
+    continue;
   }
 }
 
@@ -112,10 +113,6 @@ Book.prototype.toggleRead = function () {
   }
 };
 
-function addBookToLibrary(title, author, year, numOfPages, haveRead) {
-  myLibrary.push(new Book(title, author, year, numOfPages, haveRead));
-}
-
 bookOpenModal.addEventListener("click", () => {
   bookModal.showModal();
 });
@@ -126,7 +123,7 @@ bookCloseModal.addEventListener("click", (event) => {
 });
 
 bookAdd.addEventListener("click", (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   let title = document.querySelector("#title").value;
   let author = document.querySelector("#author").value;
   let pubYear = document.querySelector("#pub-year").value;
@@ -134,24 +131,15 @@ bookAdd.addEventListener("click", (event) => {
   let haveRead = document.querySelector("#have-read").value;
   let allInputs = document.querySelectorAll("input");
 
-  addBookToLibrary(title, author, pubYear, numOfPages, haveRead);
-  displayBooks(myLibrary);
-  console.log(bookRemove.length);
+  let book = new Book(title, author, pubYear, numOfPages, haveRead);
+  myLibrary.push(book);
+  displayBooks(book);
+  console.log(myLibrary);
 
   //clears the input fields before closing the modal
   allInputs.forEach((input) => (input.value = ""));
   bookModal.close();
 });
-
-addBookToLibrary(
-  "A song of ice and fire",
-  "George R. R. Martin",
-  1997,
-  320,
-  true
-);
-
-displayBooks(myLibrary);
 
 bookRemove.forEach((button) => {
   button.addEventListener("click", (event) => {
