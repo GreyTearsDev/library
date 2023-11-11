@@ -6,15 +6,7 @@ const bookOpenModal = document.querySelector("[data-open-modal]");
 const bookCloseModal = document.querySelector("[data-close-modal]");
 const bookAdd = document.querySelector("#submit");
 
-function createHTMLBooks(
-  formTitle,
-  formAuthor,
-  formYear,
-  formPages,
-  formHaveRead
-) {
-  const bookContainer = document.querySelector("main");
-
+function createHTMLBooks(book) {
   //create the new alements
   const newBook = document.createElement("div");
   const title = document.createElement("p");
@@ -30,10 +22,10 @@ function createHTMLBooks(
   pages.classList.add("book-pages");
 
   //add content
-  title.textContent = formTitle;
-  author.textContent = formAuthor;
-  year.textContent = formYear;
-  pages.textContent = `${formPages} pages`;
+  title.textContent = book.title;
+  author.textContent = book.author;
+  year.textContent = book.year;
+  pages.textContent = `${book.numOfPages} pages`;
 
   //add them to the container
   newBook.appendChild(title);
@@ -41,11 +33,17 @@ function createHTMLBooks(
   newBook.appendChild(year);
   newBook.appendChild(pages);
 
-  addBookToLibrary(formTitle, formAuthor, formYear, formPages, formHaveRead);
-
   //add it the the main container
-  bookContainer.appendChild(newBook);
   return newBook;
+}
+
+function displayBooks(library) {
+  const bookContainer = document.querySelector("main");
+  bookContainer.innerHTML = ""; // clears the container to avoid adding the same books twice
+
+  for (let book of library) {
+    bookContainer.appendChild(createHTMLBooks(book));
+  }
 }
 
 function Book(title, author, year, numOfPages, haveRead) {
@@ -78,7 +76,8 @@ bookAdd.addEventListener("click", (event) => {
   let haveRead = document.querySelector("#have-read").value;
   let allInputs = document.querySelectorAll("input");
 
-  createHTMLBooks(title, author, pubYear, numOfPages, haveRead);
+  addBookToLibrary(title, author, pubYear, numOfPages, haveRead);
+  displayBooks(myLibrary);
   //clears the input fields before closing the modal
   allInputs.forEach((input) => (input.value = ""));
   bookModal.close();
@@ -89,5 +88,5 @@ addBookToLibrary(
   "George R. R. Martin",
   1997,
   320,
-  true
+  "on"
 );

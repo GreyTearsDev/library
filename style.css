@@ -180,3 +180,7 @@ form button:hover {
 .book .book-author {
   font-style: italic;
 }
+
+.book .book-have-read {
+  color: var(--accent-2);
+}
