@@ -148,7 +148,6 @@ bookAdd.addEventListener("click", (event) => {
 
 bookContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("book-delete-btn")) {
-    console.log("hi");
     event.preventDefault();
     removeBook(event.target.parentElement);
   }
@@ -156,7 +155,7 @@ bookContainer.addEventListener("click", (event) => {
 
 function defaultBooks() {
   let book1 = new Book("Da Impostah", "GreyTearsDev", 2023, 300, true);
-  let book2 = new Book("It", "Stephen King", 2003, 1138, false);
+  let book2 = new Book("It", "Stephen King", 1986, 1138, false);
   let book3 = new Book(
     "The Strain",
     "Guillermo Del Toro and Chuck Hogan",

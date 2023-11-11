@@ -12,6 +12,7 @@
   --main-color: #b4bec9;
   --accent-1: #deefe7;
   --accent-2: #159a9c;
+  --red: #e74c3c;
   font-family: "DM Sans", sans-serif;
 }
 
@@ -200,13 +201,19 @@ form button:hover {
   border: none;
 }
 
-.book-delete-btn:hover {
-  background-color: var(--accent-2);
+.book-delete-btn:hover,
+.read-btn:hover {
+  background-color: var(--red);
   color: var(--text-color);
   cursor: pointer;
 }
 
 .read-btn {
   width: 50%;
-  height: 25px;
+  height: 35px;
+  background-color: var(--accent-2);
+  color: var(--text-color);
+  border-radius: 10px;
+  border: none;
+  appearance: none;
 }
