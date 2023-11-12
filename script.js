@@ -125,19 +125,23 @@ bookCloseModal.addEventListener("click", (event) => {
 
 bookAdd.addEventListener("click", (event) => {
   event.preventDefault();
+
   let title = document.querySelector("#title").value;
   let author = document.querySelector("#author").value;
   let pubYear = document.querySelector("#pub-year").value;
   let numOfPages = document.querySelector("#num-of-pages").value;
-  let haveRead = document.querySelector("#have-read").value;
+  let haveRead = document.querySelector("#have-read");
   let allInputs = document.querySelectorAll("input");
 
   //check if all inputs are filled
   for (let input of allInputs) {
-    if (input.value == "") return;
+    if (input.value == "" && !(input === haveRead)) return;
   }
 
+  haveRead = haveRead.checked ? true : false;
+
   let book = new Book(title, author, pubYear, numOfPages, haveRead);
+
   myLibrary.push(book);
   displayBooks(book);
 
