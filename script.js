@@ -35,7 +35,7 @@ function createHTMLBooks(book) {
   pages.textContent = `${book.numOfPages} pages`;
   deleteBtn.textContent = "x";
 
-  if (book.toggleRead() == true) {
+  if (book.getReadStatus() == false) {
     readStatus.textContent = "Haven't read it";
     readStatus.style.backgroundColor = "#e74c3c";
     newBook.style.borderLeftColor = "#e74c3c";
@@ -65,7 +65,9 @@ function displayBooks(book) {
       let readStatus = newBook.lastElementChild;
       //ad listener to toggle the text on the button
       readStatus.addEventListener("click", function () {
-        if (storedBook.toggleRead() == true) {
+        storedBook.toggleRead();
+
+        if (storedBook.getReadStatus() == false) {
           readStatus.textContent = "Haven't read it";
           readStatus.style.backgroundColor = "#e74c3c";
           newBook.style.borderLeftColor = "#e74c3c";
@@ -116,11 +118,13 @@ function Book(title, author, year, numOfPages, haveRead) {
 Book.prototype.toggleRead = function () {
   if (this.haveRead == true) {
     this.haveRead = false;
-    return this.haveRead;
-  } else {
-    this.haveRead = true;
-    return this.haveRead;
+    return;
   }
+  this.haveRead = true;
+};
+
+Book.prototype.getReadStatus = function () {
+  return this.haveRead;
 };
 
 bookOpenModal.addEventListener("click", () => {
