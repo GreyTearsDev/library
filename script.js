@@ -71,7 +71,6 @@ function displayBooks(book) {
           readStatus.textContent = "Haven't read it";
           readStatus.style.backgroundColor = "#e74c3c";
           newBook.style.borderLeftColor = "#e74c3c";
-
           return;
         }
         readStatus.textContent = "Have read it";
@@ -101,7 +100,6 @@ function removeBook(bookElement) {
     ) {
       bookElement.remove();
       myLibrary.splice(i, 1);
-      console.log(myLibrary);
       break;
     }
   }
