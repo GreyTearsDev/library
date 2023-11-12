@@ -38,9 +38,11 @@ function createHTMLBooks(book) {
   if (book.toggleRead() == true) {
     readStatus.textContent = "Haven't read it";
     readStatus.style.backgroundColor = "#e74c3c";
+    newBook.style.borderLeftColor = "#e74c3c";
   } else {
     readStatus.textContent = "Have read it";
     readStatus.style.backgroundColor = "#159a9c";
+    newBook.style.borderLeftColor = "#159a9c";
   }
 
   //add them to the container
@@ -66,10 +68,13 @@ function displayBooks(book) {
         if (storedBook.toggleRead() == true) {
           readStatus.textContent = "Haven't read it";
           readStatus.style.backgroundColor = "#e74c3c";
+          newBook.style.borderLeftColor = "#e74c3c";
+
           return;
         }
         readStatus.textContent = "Have read it";
         readStatus.style.backgroundColor = "#159a9c";
+        newBook.style.borderLeftColor = "#159a9c";
       });
 
       bookContainer.appendChild(newBook);
