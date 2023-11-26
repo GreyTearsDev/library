@@ -35,7 +35,7 @@ function createHTMLBooks(book) {
   pages.textContent = `${book.numOfPages} pages`;
   deleteBtn.textContent = "x";
 
-  if (book.getReadStatus == false) {
+  if (book.haveReadStatus == false) {
     readStatus.textContent = "Haven't read it";
     readStatus.style.backgroundColor = "#e74c3c";
     newBook.style.borderLeftColor = "#e74c3c";
@@ -65,11 +65,9 @@ function displayBooks(book) {
       let readStatus = newBook.lastElementChild;
       //ad listener to toggle the text on the button
       readStatus.addEventListener("click", function () {
-        console.log("before");
         storedBook.toggleRead();
-        console.log("after");
 
-        if (storedBook.getReadStatus == false) {
+        if (storedBook.haveReadStatus == false) {
           readStatus.textContent = "Haven't read it";
           readStatus.style.backgroundColor = "#e74c3c";
           newBook.style.borderLeftColor = "#e74c3c";
@@ -107,14 +105,6 @@ function removeBook(bookElement) {
   }
 }
 
-// function Book(title, author, year, numOfPages, haveRead) {
-//   this.title = title;
-//   this.author = author;
-//   this.year = year;
-//   this.numOfPages = numOfPages;
-//   this.haveRead = haveRead;
-// }
-
 class Book {
   constructor(title, author, year, numOfPages, haveRead) {
     this.title = title;
@@ -131,23 +121,11 @@ class Book {
   toggleRead() {
     if (this.haveRead == true) {
       this.haveRead = false;
-      return;
+    } else {
+      this.haveRead = true;
     }
-    this.haveRead = true;
   }
 }
-
-// Book.prototype.toggleRead = function () {
-//   if (this.haveRead == true) {
-//     this.haveRead = false;
-//     return;
-//   }
-//   this.haveRead = true;
-// };
-
-// Book.prototype.getReadStatus = function () {
-//   return this.haveRead;
-// };
 
 bookOpenModal.addEventListener("click", () => {
   bookModal.showModal();
